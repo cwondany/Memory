@@ -1,24 +1,25 @@
-package memory;
+package memory.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
  * @author cw
  */
-public class Model {
+public class CardManager {
 
     private ArrayList<Card> cards;
 
-    public Model() {
+    public CardManager() {
         cards = new ArrayList();
     }
 
-    public void setCards() {
+    public void setCards(JButton[] buttons) {
         for (int i = 1; i < 7; i++) {
-            Card card = new Card(new ImageIcon("src/assets/card" + i + ".png"));
+            Card card = new Card(new ImageIcon("src/assets/card" + i + ".png"), buttons[i]);
             cards.add(card);
             cards.add(card);
         }
@@ -38,6 +39,5 @@ public class Model {
         }
         return null;
     }
-
 
 }

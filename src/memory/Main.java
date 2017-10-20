@@ -1,32 +1,29 @@
 package memory;
+
+import memory.control.Controller;
+import memory.view.View;
+import memory.model.CardManager;
+
 /**
- * 
+ *
  * @author cw
  */
-public class Main{
+public class Main {
 
-	public static void main(String[] args){
+    public static void main(String[] args) {
+        //create Model and View
+        CardManager myModel = new CardManager();
+        View myView = new View();
 
-		//create Model and View
-		Model myModel 	= new Model();
-		View myView 	= new View();
-                
-		//tell Model about View. 
-//		myModel.addObserver(myView);
-		//myModel.setValue(start_value);	
+        //create Controller. tell it about Model and View
+        Controller myController = new Controller();
+        myController.addModel(myModel);
+        myController.addView(myView);
 
-		//create Controller. tell it about Model and View
-		Controller myController = new Controller();
-		myController.addModel(myModel);
-		myController.addView(myView);
-                
-                //initialise model
-		myController.initModel();
+        //initialise model
+        myController.initModel();
 
-		//tell View about Controller 
-		myView.addController(myController);
-
-
-
-} 
+        //tell View about Controller 
+        myView.addController(myController);
+    }
 }

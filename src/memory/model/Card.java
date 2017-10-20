@@ -1,7 +1,8 @@
-package memory;
+package memory.model;
 
 import java.util.Objects;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -10,15 +11,19 @@ import javax.swing.ImageIcon;
 public class Card {
 
     private ImageIcon cardFrontside;
+    private JButton btn;
 
-    public Card(ImageIcon cardFrontside) {
+    public Card(ImageIcon cardFrontside, JButton btn) {
 
         this.cardFrontside = cardFrontside;
+        this.btn = btn;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.cardFrontside);
+        hash = 61 * hash + Objects.hashCode(this.btn);
         return hash;
     }
 
@@ -37,14 +42,18 @@ public class Card {
         if (!Objects.equals(this.cardFrontside, other.cardFrontside)) {
             return false;
         }
+        if (!Objects.equals(this.btn, other.btn)) {
+            return false;
+        }
         return true;
     }
-
-
 
     public ImageIcon getCardFrontside() {
         return cardFrontside;
     }
-    
+
+    public JButton getBtn() {
+        return btn;
+    }
 
 }
