@@ -3,7 +3,7 @@ package memory.model;
 import java.util.ArrayList;
 
 /**
- *
+ * Player class wiht attributes.
  * @author cw
  */
 public class Player {

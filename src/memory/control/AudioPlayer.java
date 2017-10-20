@@ -1,9 +1,5 @@
 package memory.control;
 
-/**
- *
- * @author cw
- */
 import java.io.File;
 import java.io.IOException;
 
@@ -18,7 +14,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Plays a wav sound file.
+ * AudioPlayer class which can play a wav sound file.
+ * @author cw
  */
 public class AudioPlayer implements LineListener {
 
@@ -28,8 +25,7 @@ public class AudioPlayer implements LineListener {
     boolean playCompleted;
 
     /**
-     * Play a given audio file.
-     *
+     * Play a given audio file with jafax_Clip.
      * @param audioFilePath Path of the audio file.
      */
     public void play(String audioFilePath) {

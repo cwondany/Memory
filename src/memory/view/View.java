@@ -26,11 +26,12 @@ import static javax.swing.text.DefaultCaret.ALWAYS_UPDATE;
  */
 public class View {
 
+    private final int AMOUNT_OF_CARDS = 18;
     private final JLabel PLAYER1;
     private final JLabel PLAYER2;
     private final JTextArea GAMEINFO;
 
-    private final JButton[] BUTTONS = new JButton[12];
+    private final JButton[] BUTTONS = new JButton[AMOUNT_OF_CARDS];
     private final JButton NEXTTURN;
 
     private final ImageIcon CARD_BACKSIDE = new ImageIcon("src/assets/backside.png");
@@ -60,9 +61,9 @@ public class View {
 
         frame.add("North", PLAYER1);
         frame.add("South", PLAYER2);
-
         Panel panel = new Panel();
         GridLayout grid = new GridLayout(3, 4, 15, 15);
+        grid.preferredLayoutSize(panel);
         panel.setLayout(grid);
 
         for (int i = 0; i < BUTTONS.length; i++) {
@@ -74,6 +75,7 @@ public class View {
         Panel sidePanel = new Panel();
         BorderLayout b = new BorderLayout();
         sidePanel.setLayout(b);
+        sidePanel.setSize(500, 500);
 
         GAMEINFO = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(GAMEINFO);
@@ -98,7 +100,7 @@ public class View {
         frame.add("East", sidePanel);
         frame.add(panel);
         frame.addWindowListener(new CloseListener());
-        frame.setSize(700, 500);
+        frame.setSize(1000, 550);
         frame.setLocation(100, 100);
         frame.setVisible(true);
 

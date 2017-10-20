@@ -5,12 +5,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
- *
+ * Card class represents attributes of a game card.
  * @author cw
  */
 public class Card {
 
+    /**
+     * Image is displayed after clicked.
+     */
     private ImageIcon cardFrontside;
+     /**
+     * Button attribute which helds the imageIcon.
+     */
     private JButton btn;
 
     public Card(ImageIcon cardFrontside, JButton btn) {
