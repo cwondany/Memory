@@ -34,8 +34,8 @@ public class GameController implements ActionListener {
      * diceFunction which decides who may begin.
      */
     public GameController() {
-        Player player1 = new Player("Chiara", 0);
-        Player player2 = new Player("Thomas", 0);
+        Player player1 = new Player("Player 1", 0);
+        Player player2 = new Player("Player 2", 0);
 
         players.add(player1);
         players.add(player2);
@@ -128,7 +128,7 @@ public class GameController implements ActionListener {
             this.amountOfClickedButtons.clear();
             System.out.println("Playerwechsel");
             this.changeTurnOfPlayers();
-            view.getGameInfo().append("\n - Playerwechsel - \n\n"
+            view.getGameInfo().append("\n - Playerwechsel - \n"
                     + this.getPlayerWhoseTurnItIs().getName() + " ist am Zug.     \n");
         }
         isGameOver();

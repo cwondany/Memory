@@ -15,14 +15,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * AudioPlayer class which can play a wav sound file.
- * @author cw
  */
 public class AudioPlayer implements LineListener {
 
     /**
      * this boolean indicates whether the playback completes or not.
      */
-    boolean playCompleted;
+    boolean soundFileCompleted;
 
     /**
      * Play a given audio file with jafax_Clip.
@@ -40,7 +39,7 @@ public class AudioPlayer implements LineListener {
             audioClip.open(audioStream);
             audioClip.start();
 
-            while (!playCompleted) {
+            while (!soundFileCompleted) {
                 // wait for the playback completes
                 try {
                     Thread.sleep(1);
@@ -74,7 +73,7 @@ public class AudioPlayer implements LineListener {
             System.out.println("Sound started.");
 
         } else if (type == LineEvent.Type.STOP) {
-            playCompleted = true;
+            soundFileCompleted = true;
             System.out.println("Sound completed.");
         }
 

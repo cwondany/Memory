@@ -21,22 +21,31 @@ import javax.swing.text.DefaultCaret;
 import static javax.swing.text.DefaultCaret.ALWAYS_UPDATE;
 
 /**
+ * UI with all its components.
  *
  * @author cw
  */
 public class View {
 
-    private final int AMOUNT_OF_CARDS = 18;
+    private final int AMOUNT_OF_CARDS = 40;
+    private final int SIZEX = 1200;
+    private final int SIZEY = 500;
+
     private final JLabel PLAYER1;
     private final JLabel PLAYER2;
     private final JTextArea GAMEINFO;
-
+    /**
+     * Array of Buttons that are displayed in the game.
+     */
     private final JButton[] BUTTONS = new JButton[AMOUNT_OF_CARDS];
     private final JButton NEXTTURN;
 
     private final ImageIcon CARD_BACKSIDE = new ImageIcon("src/assets/backside.png");
     private final ImageIcon BLACKCARD = new ImageIcon("src/assets/blackCard.png");
 
+    /**
+     * View constructor initilizes whole UI.
+     */
     public View() {
         Frame frame = new Frame("Memory");
         frame.setBackground(Color.black);
@@ -62,7 +71,7 @@ public class View {
         frame.add("North", PLAYER1);
         frame.add("South", PLAYER2);
         Panel panel = new Panel();
-        GridLayout grid = new GridLayout(3, 4, 15, 15);
+        GridLayout grid = new GridLayout(4, 5, 8, 8);
         grid.preferredLayoutSize(panel);
         panel.setLayout(grid);
 
@@ -70,7 +79,7 @@ public class View {
             BUTTONS[i] = new JButton(CARD_BACKSIDE);
             BUTTONS[i].setRolloverEnabled(false);
             BUTTONS[i].setBackground(Color.white);
-            panel.add(BUTTONS[i]); //add that same button to the panel
+            panel.add(BUTTONS[i]); //add button to the panel
         }
         Panel sidePanel = new Panel();
         BorderLayout b = new BorderLayout();
@@ -81,7 +90,6 @@ public class View {
         JScrollPane scrollPane = new JScrollPane(GAMEINFO);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-        //scroll automatically to button if textArea is full
         DefaultCaret caret = (DefaultCaret) GAMEINFO.getCaret();
         caret.setUpdatePolicy(ALWAYS_UPDATE);
 
@@ -94,19 +102,24 @@ public class View {
         NEXTTURN = new JButton("Zug beenden");
         NEXTTURN.setForeground(Color.black);
         NEXTTURN.setBorder(borderSideLabel);
-//        nextTurn.setBackground(Color.black);
+
         sidePanel.add(NEXTTURN, BorderLayout.SOUTH);
 
         frame.add("East", sidePanel);
         frame.add(panel);
         frame.addWindowListener(new CloseListener());
-        frame.setSize(1000, 550);
-        frame.setLocation(100, 100);
+        frame.setSize(SIZEX, SIZEY);
+        frame.setLocation(0, 0);
         frame.setVisible(true);
 
     }
-//tested
 
+    /**
+     * Updates the label which held the player name and their scores.
+     *
+     * @param player Player
+     * @param index int
+     */
     public void updatePlayerScoreInView(Player player, int index) {
         //update: scroll bar to bottom
         DefaultCaret caret = (DefaultCaret) GAMEINFO.getCaret();
@@ -126,6 +139,12 @@ public class View {
         }
     }
 
+    /**
+     * Adds to all existing button an ActionController (called in GameController
+     * class).
+     *
+     * @param controller GameController
+     */
     public void addController(ActionListener controller) {
         for (int i = 0; i < BUTTONS.length; i++) {
             BUTTONS[i].addActionListener(controller);
@@ -133,6 +152,7 @@ public class View {
         this.NEXTTURN.addActionListener(controller);
     }
 
+    // Array of all buttons (those consits of ImageIcon/cards)
     public JButton[] getButtons() {
         return BUTTONS;
     }
@@ -145,17 +165,23 @@ public class View {
         return NEXTTURN;
     }
 
-    //tested
+    /**
+     * Set Button Icon to a backside picture of for the cards.
+     *
+     * @param b Button
+     */
     public void setBackside(JButton b) {
         b.setIcon(CARD_BACKSIDE);
-
     }
 
-    //tested
+    /**
+     * Set Button Icon to a black picture.
+     *
+     * @param b Button
+     */
     public void setBlack(JButton b) {
         b.setIcon(BLACKCARD);
         b.setEnabled(false);
-        // b.setContentAreaFilled(false) ;
     }
 
     public static class CloseListener extends WindowAdapter {

@@ -15,7 +15,7 @@ public class CardManager {
      * Determines who many cards are created.
     *
      */
-    private final int amountOfCards = 9;
+    private final int amountOfCards = 20;
     /**
      * Helds all cards of the game.
      */
